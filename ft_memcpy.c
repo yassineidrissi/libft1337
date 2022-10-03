@@ -5,25 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yaidriss <yaidriss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/02 19:51:13 by yaidriss          #+#    #+#             */
-/*   Updated: 2022/10/02 21:09:40 by yaidriss         ###   ########.fr       */
+/*   Created: 2022/10/03 22:58:27 by yaidriss          #+#    #+#             */
+/*   Updated: 2022/10/03 22:58:29 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	unsigned char	*s1;
-	unsigned char	*s2;
 	size_t			i;
+	unsigned char	*t_dest;
+	unsigned char	*t_src;
 
-	if (!dst || !src)
-		return (NULL);
-	i = -1;
-	s1 = (unsigned char *)dst;
-	s2 = (unsigned char *)src;
-	while (++i < n)
-		s2[i] = s1[i];
-	return (dst);
+	i = 0;
+	t_dest = (unsigned char *)dest;
+	t_src = (unsigned char *)src;
+	if (!t_dest && !t_src)
+		return (0);
+	while (i < n)
+	{
+		t_dest[i] = t_src[i];
+		i++;
+	}
+	return (dest);
 }

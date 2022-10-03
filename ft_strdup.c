@@ -1,20 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yaidriss <yaidriss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/02 18:07:05 by yaidriss          #+#    #+#             */
-/*   Updated: 2022/10/03 23:02:49 by yaidriss         ###   ########.fr       */
+/*   Created: 2022/10/03 23:10:40 by yaidriss          #+#    #+#             */
+/*   Updated: 2022/10/03 23:15:02 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isalnum(int c)
+char	*ft_strdup(const char	*s1)
 {
-	if (ft_isalpha(c) || ft_isdigit(c))
-		return (1);
-	return (0);
+	char	*s;
+	char	*ptr;
+	int		i;
+
+	i = 0;
+	s = (char *)s1;
+	ptr = (char *)malloc(ft_strlen(s) + 1);
+	if (!ptr)
+		return (0);
+	while (s[i])
+	{
+		ptr[i] = s[i];
+		i++;
+	}
+	ptr[i] = '\0';
+	return (ptr);
 }
+// need to check whit lho
+/*int main()
+{
+ 	printf("%s",ft_strdup("yassine\n"));
+ 	printf("%s",strdup("yassine"));
+}
+*/

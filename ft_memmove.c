@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yaidriss <yaidriss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/02 19:46:46 by yaidriss          #+#    #+#             */
-/*   Updated: 2022/10/02 21:10:44 by yaidriss         ###   ########.fr       */
+/*   Created: 2022/10/03 22:57:51 by yaidriss          #+#    #+#             */
+/*   Updated: 2022/10/03 22:57:52 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,16 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	unsigned char	*d;
 	unsigned char	*s;
 
-	if (!d || !s)
+	if (!dst && !src)
 		return (NULL);
+	i = -1;
 	s = (unsigned char *)src;
 	d = (unsigned char *)dst;
-	
+	if (d > s && s + len > d)
+		while (++i < len)
+			d[len - i - 1] = s[len - i - 1];
+	else
+		while (++i < len)
+			d[i] = s[i];
+	return (dst);
 }
