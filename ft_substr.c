@@ -1,41 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yaidriss <yaidriss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/03 23:10:40 by yaidriss          #+#    #+#             */
-/*   Updated: 2022/10/05 19:15:27 by yaidriss         ###   ########.fr       */
+/*   Created: 2022/10/04 20:30:50 by yaidriss          #+#    #+#             */
+/*   Updated: 2022/10/05 21:18:12 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char	*s1)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*s;
-	char	*ptr;
-	int		i;
+	size_t	i;
+	size_t	j;
+	char	*result;
 
 	i = 0;
-	s = (char *)s1;
-	ptr = (char *)malloc(ft_strlen(s) + 1);
-	if (!ptr)
-		return (0);
+	j = 0;
+	if (len < 0 || ft_strlen(s) < start)
+		result = malloc(sizeof(*s));
+	else if (ft_strlen(s) + len < start)
+		result = malloc((ft_strlen(s) - start + 1) * sizeof(*s));
+	else
+		result = malloc((len + 1) * sizeof(*s));
+	if (!s || !result)
+		return (NULL);
 	while (s[i])
 	{
-		ptr[i] = s[i];
+		if (i >= start && j < len)
+			result[j++] = s[i];
 		i++;
 	}
-	ptr[i] = '\0';
-	return (ptr);
+	result[j] = 0;
+	return (result);
 }
-
-// need to check whit lho
-/*int main()
-{
- 	printf("%s",ft_strdup("yassine\n"));
- 	printf("%s",strdup("yassine"));
-}
-*/

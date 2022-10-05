@@ -6,10 +6,9 @@
 /*   By: yaidriss <yaidriss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 16:06:33 by yaidriss          #+#    #+#             */
-/*   Updated: 2022/10/02 16:06:59 by yaidriss         ###   ########.fr       */
+/*   Updated: 2022/10/05 23:46:12 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef LIBFT_H
 # define LIBFT_H
