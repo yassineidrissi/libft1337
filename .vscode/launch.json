@@ -29,7 +29,7 @@
       "stopAtEntry": true,
       "externalConsole": false,
       "cwd": "/Users/yaidriss/Desktop/libft1337",
-      "program": "/Users/yaidriss/Desktop/libft1337/build/Debug/outDebug",
+      "program": "/Users/yaidriss/Desktop/libft1337/a.out",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb"
     }

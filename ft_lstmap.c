@@ -1,42 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yaidriss <yaidriss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/21 02:27:20 by yidrissi          #+#    #+#             */
-/*   Updated: 2022/10/08 23:41:28 by yaidriss         ###   ########.fr       */
+/*   Created: 2022/10/08 01:19:37 by yaidriss          #+#    #+#             */
+/*   Updated: 2022/10/09 01:55:55 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t	len)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	char		*a;
-	char		*b;
-	size_t		i;
-	size_t		j;
-	size_t		n;
+	t_list	*result;
+	t_list	*new;
 
-	n = len;
-	a = (char *)haystack;
-	b = (char *)needle;
-	i = 0;
-	j = 0;
-	if (ft_strlen(needle) == 0 || (!haystack && !needle))
-		return ((char *)&haystack[i]);
-	while (a[i] && i < n)
+	result = NULL;
+	if (!lst)
+		return (NULL);
+	while (lst)
 	{
-		j = 0;
-		while (b[j] == a[i + j] && a[j] && i + j < n)
+		new = ft_lstnew(f(lst->content));
+		if (new)
+			ft_lstadd_back(&result, new);
+		else
 		{
-			if (!b[j + 1])
-				return (&a[i]);
-			j++;
+			ft_lstclear(&result, del);
+			return (NULL);
 		}
-		i++;
+		lst = lst->next;
 	}
-	return (0);
+	return (result);
 }
