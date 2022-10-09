@@ -6,141 +6,82 @@
 /*   By: yaidriss <yaidriss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 23:50:45 by yaidriss          #+#    #+#             */
-/*   Updated: 2022/10/08 20:12:58 by yaidriss         ###   ########.fr       */
+/*   Updated: 2022/10/09 19:09:11 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_countword(char const *s, char c)
+static int	ft_size_malloc(const char *str, char c)
 {
 	int	i;
-	int	count;
+	int	len;
 
 	i = 0;
-	count = 0;
-	while (s[i] && s[i] == c)
-		i++;
-	i--;
-	while (s[++i])
-		if (s[i] == c && s[i + 1] != (c && '\0'))
-			count++;
-	return (count + 1);
+	len = 0;
+	while (str && str[i] != '\0')
+	{
+		if (str[i] != c)
+		{
+			while (str[i] != c && str[i] != '\0')
+				i++;
+			len++;
+		}
+		while (str[i] == c && str[i] != '\0')
+			i++;
+	}
+	return (len + 1);
 }
 
-char	*ft_add_word(char const *s, int i, int j)
+static char	*ft_add_mot(const char *str, int i, int j)
 {
-	char	*word;
+	int		len_mot;
 	int		k;
+	char	*mot;
 
+	mot = 0;
+	len_mot = (j - i + 1) + 1;
+	mot = (char *)malloc (len_mot * sizeof(char));
+	if (!mot)
+		return (0);
 	k = 0;
-	word = (char *)malloc(sizeof(char) * (j - i + 1));
-	while (i < j)
-		word[k++] = s[i++];
-	word[k] = '\0';
-	return (word);
+	while (k < len_mot - 1)
+	{
+		mot[k] = str[i + k];
+		k++;
+	}
+	mot[k] = '\0';
+	return (mot);
 }
 
-char	**ft_add_ponter(char const *s, char c)
+static void	ft_init(int *i, int *j, int *k)
 {
-	char	**result;
-
-	result = (char **)malloc(sizeof(char *) * (ft_countword(s, c) + 1));
-	if (!result)
-		return (NULL);
-	return (result);
+	*i = 0;
+	*j = 0;
+	*k = 0;
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(const char *str, char c)
 {
 	char	**result;
 	int		i;
 	int		j;
 	int		k;
 
-	if (!s)
-		return (NULL);
-	result = ft_add_ponter(s, c);
-	k = 0;
-	i = 0;
-	j = 0;
-	while (s[i])
+	ft_init(&i, &j, &k);
+	result = (char **)malloc (ft_size_malloc (str, c) * sizeof(char *));
+	if (!result || !str)
+		return (0);
+	while (str && str[i] != '\0')
 	{
-		while (s[i] == c && s[i])
-			i++;
 		j = i;
-		while (s[j] != c && s[j])
-			j++;
-		if (j > i)
-			result[k++] = ft_add_word(s, i, j);
-		i = j;
+		while (str[i] != c && str[i] != '\0')
+			i++;
+		if (i != j)
+			result[k++] = ft_add_mot(str, j, i - 1);
+		while (str[i] == c && str[i] != '\0')
+			i++;
 	}
-	result[k] = NULL;
+	result[k] = 0;
 	return (result);
 }
-
-//! seconde function
-// s[j] = "     salam       khalid cv hello"
-// int	ft_countword(char const *s, char c)
-// {
-//     int    i;
-//     int    count;
-
-//     i = 0;
-//     count = 0;
-//     while (s[i] && s[i] == c)
-//         i++;
-//     i--;
-//     while (s[++i])
-//         if (s[i] == c && s[i + 1] != c && s[i + 1] != '\0')
-//             count++;
-//     return (count + 1);
-// }
-
-// char    *ft_add_word(char const *s, int i, int j)
-// {
-//     char    *word;
-//     int        k;
-
-//     k = 0;
-//     word = (char *)malloc(sizeof(char) * (j - i + 1));
-//     while (++i <= j)
-//         word[k++] = s[i];
-//     word[k] = '\0';
-//     return (word);
-// }
-
-// char	**ft_split(char const *s, char c)
-// {
-// 	char    **result;
-// 	int        i;
-//     int        j;
-//     int        k;
-
-//     k = 0;
-//     i = 0;
-//     j = 0;
-//     if (!s)
-//         return (NULL);
-//     result = (char **)malloc(sizeof(char *) * (ft_countword(s, c) + 1));
-//     if (!result)
-//         return (NULL);
-//     while (s[i])
-//     {
-//         j = i;
-// 		if(s[i] != c  )
-//         if (s[i] == c && s[i + 1] != c && s[i +1] != '\0')
-//             while (s[j + 1] != c && s[j + 1] != '\0')
-//                 j++;
-//         if (i != j)
-//             result[k++] = ft_add_word(s, i, j);
-//         i++;
-//     }
-//     result[k] = NULL;
-//     return (result);
-// }
-
-// int main() {
-//   char str[] = "salam     cv  dkj bikhir  ";
-//   char **result = ft_split(str, ' ');
-// 

@@ -6,7 +6,7 @@
 /*   By: yaidriss <yaidriss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 23:07:31 by yaidriss          #+#    #+#             */
-/*   Updated: 2022/10/03 23:07:33 by yaidriss         ###   ########.fr       */
+/*   Updated: 2022/10/09 18:45:40 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	*ft_calloc(size_t	count, size_t size)
 {
 	void	*result;
 
+	if (count == SIZE_MAX || size == SIZE_MAX)
+		return (NULL);
 	result = malloc(count * size);
 	if (!result)
 		return (0);

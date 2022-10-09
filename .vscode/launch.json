@@ -28,8 +28,8 @@
       "args": [],
       "stopAtEntry": true,
       "externalConsole": false,
-      "cwd": "/Users/yaidriss/Desktop/libft1337",
-      "program": "/Users/yaidriss/Desktop/libft1337/a.out",
+      "cwd": "/Users/yaidriss/Desktop/libft",
+      "program": "/Users/yaidriss/Desktop/libft/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb"
     }

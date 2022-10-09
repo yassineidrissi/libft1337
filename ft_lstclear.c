@@ -6,7 +6,7 @@
 /*   By: yaidriss <yaidriss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 00:07:33 by yaidriss          #+#    #+#             */
-/*   Updated: 2022/10/08 22:57:52 by yaidriss         ###   ########.fr       */
+/*   Updated: 2022/10/09 18:06:05 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
 	t_list	*tmp;
 
-	if (!lst)
+	if (!lst || !del || !*lst)
 		return ;
 	tmp = *lst;
 	while (tmp)
